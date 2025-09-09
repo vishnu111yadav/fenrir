@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fenrir</title>
+  </head>
+  <body>
+    <p>Hey this is FENRIR</p>
+    {% for name in data %}
+    <p>{{ name }}</p>
+    {% endfor %} 
+    #Enviroment Variables 
+    {% for key, value in env.items() %}
+    <li>{{ key }}: {{ value }}</li>
+    {% endfor %}
+  </body>
+  <style>
+    body {
+      background-color: black;
+      color: yellow;
+    }
+  </style>
+</html>

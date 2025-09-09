@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fenrir-backend
+  labels:
+    vishal: {{ .Values.num }}
+spec:
+  selector:
+    matchLabels:
+      app: fenrir-backend
+  template:
+    metadata:
+      labels:
+        app: fenrir-backend
+    spec:
+      containers:
+        - name: fenrir-backend
+          image: docker.io/vishal111yadav/fenrir-backend
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MONGO_HOST
+              value: "mongo.fenrir.svc.cluster.local"
+            - name: ME_CONFIG_BASICAUTH
+              value: "false"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fenrir-backend
+spec:
+  selector:
+    app: fenrir-backend
+  ports:
+    - port: 80
+      targetPort: 8000
+  type: LoadBalancer
